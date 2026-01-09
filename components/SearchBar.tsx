@@ -35,7 +35,8 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
         />
         <button
           type="submit"
-          disabled={isLoading || !query.trim()}
+          //disabled={isLoading || !query.trim()}
+          disabled={isLoading}
           className="absolute right-2 top-1/2 -translate-y-1/2 
                    bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300
                    text-white p-3 rounded-full
