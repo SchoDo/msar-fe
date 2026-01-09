@@ -13,9 +13,10 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (query.trim()) {
-      onSearch(query.trim())
-    }
+    //if (query.trim()) {
+    //  onSearch(query.trim())
+    //}
+    onSearch(query.trim())
   }
 
   return (
