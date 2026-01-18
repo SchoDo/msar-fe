@@ -4,7 +4,7 @@ import { Track } from '@/types'
 
 interface ButtonProps {
   onClick: any
-  track: Track
+  track?: Track
 }
 
 export function Button({onClick, track} : ButtonProps) {

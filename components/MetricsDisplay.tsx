@@ -12,12 +12,39 @@ interface QueryMetricsDisplayProps {
 
 export function MetricsDisplay({ result }: MetricsDisplayProps) {
   const metrics = [
-    { label: 'Precision@k', value: result?.precision_at_k || -1 },
-    { label: 'Recall@k', value: result?.recall_at_k || -1 },
-    { label: 'MRR@k', value: result?.mrr_at_k  || -1},
-    { label: 'nDCG@k', value: result?.ndcg_at_k  || -1},
-    { label: 'Coverage@k', value: result?.coverage_at_k  || -1},
-    { label: 'Avg Popularity', value: result?.pop_at_k  || -1},
+    { label: 'Precision@k', value: result?.precision_at_k | -1 },
+    { label: 'Recall@k', value: result?.recall_at_k | -1 },
+    { label: 'MRR@k', value: result?.mrr_at_k  | -1},
+    { label: 'nDCG@k', value: result?.ndcg_at_k  | -1},
+    { label: 'Coverage@k', value: result?.coverage_at_k  | -1},
+    { label: 'Avg Popularity', value: result?.pop_at_k  | -1},
+  ]
+
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <h3 className="text-lg font-semibold mb-4 text-gray-900">Evaluation Metrics</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {metrics.map((metric) => (
+          <div key={metric.label} className="text-center">
+            <div className="text-2xl font-bold text-blue-600">
+              {metric.value.toFixed(3)}
+            </div>
+            <div className="text-sm text-gray-600">{metric.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function AlgoMetricsDisplay({ result }: MetricsDisplayProps) {
+  const metrics = [
+    { label: 'Precision@k', value: result?.precision_at_k | -1 },
+    { label: 'Recall@k', value: result?.recall_at_k | -1 },
+    { label: 'MRR@k', value: result?.mrr_at_k  | -1},
+    { label: 'nDCG@k', value: result?.ndcg_at_k  | -1},
+    { label: 'Coverage@k', value: result?.coverage_at_k  | -1},
+    { label: 'Avg Popularity', value: result?.pop_at_k  | -1},
   ]
 
   return (

@@ -17,7 +17,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<SearchResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [metric, setMetric] = useState<MetricResult | null>(null)
+  const [metric, setMetric] = useState<MetricResult>({precision_at_k:-1,recall_at_k:-1,mrr_at_k:-1,ndcg_at_k:-1,coverage_at_k:-1,pop_at_k:-1})
   const handleSearch = async (query: string) => {
     setIsLoading(true)
     setError(null)
@@ -117,7 +117,7 @@ export default function HomePage() {
             <div className="w-full space-y-8">
               {/* Metrics */}
               <MetricsDisplay result={metric} />
-              <Button key="1" onClick={handleMetricQuery} >Query</Button>
+              <Button onClick={handleMetricQuery} />
               <QueryMetricsDisplay result={result} />
 
               {/* Query Track */}
