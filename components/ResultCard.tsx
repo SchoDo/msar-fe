@@ -3,6 +3,7 @@
 import { Track } from '@/types'
 import { getYouTubeEmbedUrl } from '@/lib/api'
 import { ExternalLink } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 interface ResultCardProps {
   track: Track
@@ -49,6 +50,9 @@ export function ResultCard({ track, isQuery }: ResultCardProps) {
         <div className="mt-3 flex items-center justify-between">
           <span className="text-sm text-gray-600">
             Popularity: <span className="font-semibold">{track.popularity}</span>
+          </span>
+          <span className="text-sm text-gray-600">
+            Similarity: <span className="font-semibold">{track.similarity}</span>
           </span>
           <a
             href={track.youtube_url}

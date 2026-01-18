@@ -3,26 +3,57 @@
 import { useState } from 'react'
 import { SearchBar } from '@/components/SearchBar'
 import { AlgorithmSelector } from '@/components/AlgorithmSelector'
-import { MetricsDisplay } from '@/components/MetricsDisplay'
+import { MetricsDisplay, QueryMetricsDisplay } from '@/components/MetricsDisplay'
 import { ResultCard } from '@/components/ResultCard'
-import { searchTracks } from '@/lib/api'
-import { RetrievalAlgorithm, SearchResult } from '@/types'
+import { searchTracks, searchQuery, metricQuery } from '@/lib/api'
+import { RetrievalAlgorithm, SearchResult, MetricResult } from '@/types'
 import { Music } from 'lucide-react'
+import  { Button } from '@/components/Button'
 
 export default function HomePage() {
-  const [algorithm, setAlgorithm] = useState<RetrievalAlgorithm>('lyrics')
+  const [algorithm, setAlgorithm] = useState<RetrievalAlgorithm>('None|l')
+  const [nn, setNN] = useState("False")
   const [k, setK] = useState(10)
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<SearchResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-
+  const [metric, setMetric] = useState<MetricResult | null>(null)
   const handleSearch = async (query: string) => {
     setIsLoading(true)
     setError(null)
 
     try {
-      const searchResult = await searchTracks({ query, algorithm, k })
+      const searchResult = await searchTracks({ query, algorithm, k, nn })
       setResult(searchResult)
+    } catch (err) {
+      setError('Search failed. Please try again.')
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleQuery = async (query: string) => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const searchResult = await searchQuery({ query, algorithm, k, nn })
+      setResult(searchResult)
+    } catch (err) {
+      setError('Search failed. Please try again.')
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleMetricQuery = async () => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const metricResult = await metricQuery({algorithm, k, nn })
+      setMetric(metricResult)
     } catch (err) {
       setError('Search failed. Please try again.')
       console.error(err)
@@ -61,6 +92,8 @@ export default function HomePage() {
               onChange={setAlgorithm}
               k={k}
               onKChange={setK}
+              onNNChange={setNN}
+              nn={nn}
             />
           </div>
 
@@ -83,12 +116,17 @@ export default function HomePage() {
           {result && !isLoading && (
             <div className="w-full space-y-8">
               {/* Metrics */}
-              <MetricsDisplay result={result} />
+              <MetricsDisplay result={metric} />
+              <Button key="1" onClick={handleMetricQuery} >Query</Button>
+              <QueryMetricsDisplay result={result} />
 
               {/* Query Track */}
               <div>
                 <h2 className="text-xl font-bold mb-4 text-gray-900">Query Track</h2>
+                <div>
                 <ResultCard track={result.query_track} isQuery />
+                <Button key={result.query_track.id + "a"} track={result.query_track} onClick={handleQuery}/>
+                </div>
               </div>
 
               {/* Retrieved Tracks */}
@@ -98,7 +136,10 @@ export default function HomePage() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {result.retrieved_tracks.map((track) => (
+                    <div key={track.id}>
                     <ResultCard key={track.id} track={track} />
+                    <Button key={track.id + "a"} track={track} onClick={handleQuery}/>
+                    </div>
                   ))}
                 </div>
               </div>
