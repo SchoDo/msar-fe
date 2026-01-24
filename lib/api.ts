@@ -12,7 +12,7 @@ export async function searchTracks(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/song`, {
+    const response = await fetch(`https://apimsr.krenarahmeti.com/song`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/search`, {
+    const response = await fetch(`https://apimsr.krenarahmeti.com/search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
 
 export async function metricQuery(query: MetricQuery): Promise<MetricResult> {
   try {
-    const response = await fetch(`http://localhost:8000/metrics_pre`, {
+    const response = await fetch(`https://apimsr.krenarahmeti.com/metrics_pre`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
