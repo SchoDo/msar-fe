@@ -17,7 +17,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<SearchResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [metric, setMetric] = useState<MetricResult>({precision_at_k:-1,recall_at_k:-1,mrr_at_k:-1,ndcg_at_k:-1,coverage_at_k:-1,pop_at_k:-1})
+  const [metric, setMetric] = useState<MetricResult>({precision_at_k:2,recall_at_k:-3,mrr_at_k:-4,ndcg_at_k:-5,coverage_at_k:-6,pop_at_k:-7})
   const handleSearch = async (query: string) => {
     setIsLoading(true)
     setError(null)

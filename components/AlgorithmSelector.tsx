@@ -12,6 +12,7 @@ interface AlgorithmSelectorProps {
 }
 
 const ALGORITHMS: { value: RetrievalAlgorithm; label: string }[] = [
+  { value: 'None|Rand', label: 'Random baseline'},
   { value: 'None|l', label: 'Lyrics-based' },
   { value: 'None|a', label: 'Audio-based' },
   { value: 'None|v', label: 'Video-based' },

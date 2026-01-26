@@ -12,7 +12,7 @@ export async function searchTracks(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/song`, {
+    const response = await fetch(`http://localhost:8000/song`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/search`, {
+    const response = await fetch(`http://localhost:8000/search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
 
 export async function metricQuery(query: MetricQuery): Promise<MetricResult> {
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/metrics_pre`, {
+    const response = await fetch(`http://localhost:8000/metrics_pre`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,18 +86,17 @@ export async function metricQuery(query: MetricQuery): Promise<MetricResult> {
     if (!response.ok) {
       throw new Error(`Backend error: ${response.status}`)
     }
-
     return await response.json()
   } catch (error) {
     console.error('Backend API failed, falling back to mock data:', error)
     // Fallback to mock data
     return {
-      precision_at_k:-1,
-      recall_at_k:-1,
-      mrr_at_k:-1,
-      ndcg_at_k:-1,
-      coverage_at_k:-1,
-      pop_at_k:-1
+      precision_at_k:-2,
+      recall_at_k:-3,
+      mrr_at_k:-4,
+      ndcg_at_k:-5,
+      coverage_at_k:-6,
+      pop_at_k:-7
     }
   }
 }

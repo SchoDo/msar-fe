@@ -1,9 +1,5 @@
 export type RetrievalAlgorithm = 
-  | 'random'
-  | 'lyrics'
-  | 'audio'
-  | 'video'
-  | 'early_fusion'
+  | 'None|Rand'
   | 'None|l'
   | 'None|a'
   | 'None|v'

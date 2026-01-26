@@ -12,12 +12,12 @@ interface QueryMetricsDisplayProps {
 
 export function MetricsDisplay({ result }: MetricsDisplayProps) {
   const metrics = [
-    { label: 'Precision@k', value: result?.precision_at_k | -1 },
-    { label: 'Recall@k', value: result?.recall_at_k | -1 },
-    { label: 'MRR@k', value: result?.mrr_at_k  | -1},
-    { label: 'nDCG@k', value: result?.ndcg_at_k  | -1},
-    { label: 'Coverage@k', value: result?.coverage_at_k  | -1},
-    { label: 'Avg Popularity', value: result?.pop_at_k  | -1},
+    { label: 'Precision@k', value: result?.precision_at_k  },
+    { label: 'Recall@k', value: result?.recall_at_k },
+    { label: 'MRR@k', value: result?.mrr_at_k},
+    { label: 'nDCG@k', value: result?.ndcg_at_k},
+    { label: 'Coverage@k', value: result?.coverage_at_k},
+    { label: 'Avg Popularity', value: result?.pop_at_k},
   ]
 
   return (
@@ -39,12 +39,12 @@ export function MetricsDisplay({ result }: MetricsDisplayProps) {
 
 export function AlgoMetricsDisplay({ result }: MetricsDisplayProps) {
   const metrics = [
-    { label: 'Precision@k', value: result?.precision_at_k | -1 },
-    { label: 'Recall@k', value: result?.recall_at_k | -1 },
-    { label: 'MRR@k', value: result?.mrr_at_k  | -1},
-    { label: 'nDCG@k', value: result?.ndcg_at_k  | -1},
-    { label: 'Coverage@k', value: result?.coverage_at_k  | -1},
-    { label: 'Avg Popularity', value: result?.pop_at_k  | -1},
+    { label: 'Precision@k', value: result?.precision_at_k },
+    { label: 'Recall@k', value: result?.recall_at_k },
+    { label: 'MRR@k', value: result?.mrr_at_k},
+    { label: 'nDCG@k', value: result?.ndcg_at_k },
+    { label: 'Coverage@k', value: result?.coverage_at_k},
+    { label: 'Avg Popularity', value: result?.pop_at_k},
   ]
 
   return (
