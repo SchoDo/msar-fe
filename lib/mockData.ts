@@ -93,7 +93,7 @@ export function generateMockResults(
   
   let retrievedTracks: Track[]
   
-  if (algorithm === 'random') {
+  if (algorithm === 'None|Rand') {
     // Random baseline: shuffle and take k
     retrievedTracks = [...otherTracks]
       .sort(() => Math.random() - 0.5)
