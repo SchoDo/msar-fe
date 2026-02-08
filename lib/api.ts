@@ -12,7 +12,7 @@ export async function searchTracks(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/song`, {
+    const response = await fetch(`https://msr-backend-production.up.railway.app/song`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
   }
 
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/search`, {
+    const response = await fetch(`https://msr-backend-production.up.railway.app/search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export async function searchQuery(query: SearchQuery): Promise<SearchResult> {
 
 export async function metricQuery(query: MetricQuery): Promise<MetricResult> {
   try {
-    const response = await fetch(`https://apimsr.krenarahmeti.com/metrics_pre`, {
+    const response = await fetch(`https://msr-backend-production.up.railway.app/metrics_pre`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
